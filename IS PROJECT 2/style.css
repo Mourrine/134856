@@ -11,9 +11,25 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("https://previews.123rf.com/images/nexusplexus/nexusplexus1211/nexusplexus121102522/16599885-illustration-with-medical-background-having-heart-beat-doctor-and-stethoscope.jpg") center/ cover no-repeat;
+    background: url("https://media.istockphoto.com/id/597963092/photo/graduated-twilight-horizon-sky.webp?b=1&s=170667a&w=0&k=20&c=0PEhWX2wmbZHMEfwWotzxs2GKaeUxpbxsTegz6cofFI=") center/ cover no-repeat;
     
 }
+
+
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+
 
 .container .left {
     
@@ -55,7 +71,7 @@ header {
     left: 0;
     width: 100%;
     padding: 3px 100px;
-    background: rgb(101, 175, 175);
+    background: lavender;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,8 +80,48 @@ header {
 
 }
 
+.text-container {
+    text-align: center; 
+}
+
+.first-part, .second-part {
+    
+    margin: 10px 0;
+    text-align: center;
+    display: block;
+}
+
+.first-part {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    
+}
+
+.second-part {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+
+} 
+
+.content1 {
+    max-width: 800px; 
+    margin: 0 auto; 
+    color: white;
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace ;
+    padding: 20px
+    
+}
+
+.content1 a{
+    margin-top: 80px ;
+    color: #e7f1e8;
+    font-size: 20px;
+    display: block;
+}
+
 .logo {
-    font-size: 4em;
+    font-size: 3.5em;
     color: rgb(14, 13, 13);
     user-select: none;
 }
@@ -75,7 +131,7 @@ header {
     font-size: 1em;
     color: #181616;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 500;
     margin-left: 50px;
 
 }
@@ -332,4 +388,33 @@ header {
 .login-register p a:hover {
     text-decoration: underline;
 }
-    
+ 
+.user-profile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.user-info {
+    margin-left: 10px;
+}
+
+
+
+
+
+
+

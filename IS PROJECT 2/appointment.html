@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+       
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleDoc</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(129, 184, 194);
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#successMessage {
+    background-color: rgb(104, 170, 201);
+    display: none;
+    color: #0d0f0d;
+    font-weight: bold;
+}
+    </style>
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Book Appointment</h1>
+        <form action="appointment.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="doctor">Doctor:</label>
+            <select id="doctor" name="doctor">
+        
+            </select>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+
+           
+
+            <input type="submit" value="Book Appointment">
+        </form>
+        
+
+    </div>
+
+    <script>
+        // Use JavaScript and AJAX to fetch the doctor list from get_doctors.php and populate the dropdown
+        var doctorDropdown = document.getElementById("doctor");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_doctors.php", true);
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var options = JSON.parse(xhr.responseText);
+                console.log(options);
+                for (var i = 0; i < options.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = options[i];
+                    option.text = options[i];
+                    doctorDropdown.appendChild(option);
+                }
+            }
+        };
+
+        xhr.send();
+    </script>
+
+    
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="doctor.css">
+    <title>Teledoc - Doctor Portal</title>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Welcome</h1>
+    </div>
+
+    <div class="content-container">
+        <div class="sidebar">
+            <h2>Doctor Portal</h2>
+            <ul>
+                <li><a href="javascript:void(0);" onclick="showContent('appointments')">Appointments</a></li>
+                <li><a href="javascript:void(0);" onclick="showContent('records')">Patient Records</a></li>
+                <li><a href="javascript:void(0);" onclick="showContent('prescriptions')">Prescriptions</a></li>
+                <li><a href="index.html">Logout</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div id="appointments-content" style="display: none;">
+                <h2>Appointments</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Patient Name</th>
+                            <th>Google Meet Link</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointments-list">
+                        <!-- This area will be dynamically populated with appointment data -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+  
+
+
+        function showContent(section) {
+            var sections = ['appointments', 'records', 'prescriptions'];
+
+            for (var i = 0; i < sections.length; i++) {
+                var content = document.getElementById(sections[i] + '-content');
+                if (section === sections[i]) {
+                    content.style.display = 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            }
+        }
+
+        function populateAppointments(appointments) {
+            var appointmentsList = document.getElementById("appointments-list");
+            appointmentsList.innerHTML = ""; // Clear the current list
+
+            for (var i = 0; i < appointments.length; i++) {
+                var appointment = appointments[i];
+                var row = document.createElement("tr");
+                var dateCell = document.createElement("td");
+                dateCell.textContent = appointment.date;
+                var timeCell = document.createElement("td");
+                timeCell.textContent = appointment.time;
+                var patientNameCell = document.createElement("td");
+                patientNameCell.textContent = appointment.patient_name;
+                var meetLinkCell = document.createElement("td");
+                var meetLink = document.createElement("a");
+                meetLink.textContent = "Join Meeting";
+                meetLink.href = appointment.meet_link;
+                meetLink.target = "_blank";
+                meetLink.style.color = "black"; // Set the text color to black
+
+                meetLinkCell.appendChild(meetLink);
+
+                row.appendChild(dateCell);
+                row.appendChild(timeCell);
+                row.appendChild(patientNameCell);
+                row.appendChild(meetLinkCell);
+
+                appointmentsList.appendChild(row);
+            }
+        }
+
+        // Fetch the appointment data from the server
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "get_appointments.php", true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var appointments = JSON.parse(xhr.responseText);
+                populateAppointments(appointments);
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
